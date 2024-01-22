@@ -11,29 +11,6 @@ project(
     ]
 )
 
-if get_option('buildtype') == 'debug'
-    compiler = meson.get_compiler('cpp')
-
-    if compiler.has_argument('-fprofile-abs-path')
-        # clang does not have this particular flag, so we only add it when
-        # compiling with gcc. It's helpful in determining code coverage.
-        add_project_arguments('-fprofile-abs-path', language: 'cpp')
-    endif
-
-    add_project_arguments('--coverage', language: 'cpp')
-    add_project_link_arguments('--coverage', language: 'cpp')
-endif
-
-if get_option('problem') == 'cvrp'
-    # CVRP does not have time windows, so we set a flag that compiles time 
-    # window stuff out of the extension modules.
-    add_project_arguments('-DPYVRP_NO_TIME_WINDOWS', language: 'cpp')
-endif
-
-if get_option('precision') == 'double'  # default is integer
-    add_project_arguments('-DPYVRP_DOUBLE_PRECISION', language: 'cpp')
-endif
-
 # We first compile a common library that contains all regular, C++ code. This
 # is then linked against by the extension modules. We also define source and
 # installation directories here, as a shorthand.

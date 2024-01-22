@@ -9,40 +9,9 @@ def parse_args():
     parser = argparse.ArgumentParser(prog="build_extensions")
 
     parser.add_argument(
-        "--build_dir",
-        default="build",
-        help="Directory for Meson to use while building extensions.",
-    )
-    parser.add_argument(
-        "--build_type",
-        default="release",
-        choices=["debug", "debugoptimized", "release"],
-        help="The type of build to provide. Defaults to release mode.",
-    )
-    parser.add_argument(
-        "--problem",
-        default="vrptw",
-        choices=["cvrp", "vrptw"],
-        help="Which type of solver to compile. Defaults to 'vrptw'.",
-    )
-    parser.add_argument(
-        "--precision",
-        default="integer",
-        choices=["integer", "double"],
-        help="Double is more precise, integer faster. Defaults to 'integer'.",
-    )
-    parser.add_argument(
         "--clean",
         action="store_true",
         help="Clean build and installation directories before building.",
-    )
-    parser.add_argument(
-        "--regenerate_type_stubs",
-        action="store_true",
-        help="""
-        Whether to regenerate the MyPy type stubs as well. Default False, since
-        this can overwrite manual adjustments to the type stubs.
-        """,
     )
     parser.add_argument(
         "--additional",
