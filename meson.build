@@ -1,5 +1,5 @@
 project(
-    'package_name',
+    'advent',
     'cpp',
     version: run_command('poetry', 'version', '--short', check: true).stdout(),
     default_options: [
@@ -11,17 +11,31 @@ project(
     ]
 )
 
+if get_option('buildtype') == 'debug'
+    compiler = meson.get_compiler('cpp')
+
+    if compiler.has_argument('-fprofile-abs-path')
+        # clang does not have this particular flag, so we only add it when
+        # compiling with gcc. It's helpful in determining code coverage.
+        add_project_arguments('-fprofile-abs-path', language: 'cpp')
+    endif
+
+    add_project_arguments('--coverage', language: 'cpp')
+    add_project_link_arguments('--coverage', language: 'cpp')
+endif
+
+
 # We first compile a common library that contains all regular, C++ code. This
 # is then linked against by the extension modules. We also define source and
 # installation directories here, as a shorthand.
-INST_DIR = 'package_name'
-SRC_DIR = 'package_name' / 'cpp'
+INST_DIR = 'advent'
+SRC_DIR = 'advent' / 'cpp'
 INCLUDES = include_directories(SRC_DIR)
 
 libcommon = static_library(
     'common',
     [
-        SRC_DIR / 'Filename.cpp',
+        SRC_DIR / 'day1' / 'day1.cpp',
 
     ],
     include_directories: INCLUDES,
@@ -35,7 +49,7 @@ dependencies = [py.dependency(), dependency('pybind11')]
 # eventual module name, and 'subdirectory' gives the source and installation 
 # directories (relative to SRC_DIR and INST_DIR).
 extensions = [
-   #ADD FOLDER NAMES
+   ['day1', 'day1']
 ]
 
 foreach extension : extensions
@@ -45,24 +59,10 @@ foreach extension : extensions
 
     message('Going to build extension module ' + subdir / name + '.')
 
-    # Specify a custom target that generates the documentation header for this
-    # extension, of the form "<name>_docs.h". It is generated from headers in
-    # the relevant source directory - which the command below grabs for us.
-    doc_glob = f'import glob; print(*glob.glob("@SRC_DIR@/@subdir@/*.h"))'
-    doc_cmd = run_command('python', '-c', doc_glob, check: true)
-    doc_input_headers = doc_cmd.stdout().split()
-    doc_output_header = custom_target(
-        'docs for ' + name,
-        output: rawname + '_docs.h',
-        input: ['extract_docstrings.py'] + doc_input_headers,
-        command: ['python', '@INPUT@', '@OUTPUT@'],
-        depend_files: [SRC_DIR / subdir / 'bindings.cpp'],
-    )
-
     # Register extension module to build.
     py.extension_module(
         name,
-        [SRC_DIR / subdir / 'bindings.cpp', doc_output_header],
+        [SRC_DIR / subdir / 'bindings.cpp'],
         dependencies: dependencies,
         link_with: libcommon,
         install: true,

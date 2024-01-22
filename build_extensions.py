@@ -4,14 +4,44 @@ import pathlib
 from subprocess import check_call
 from typing import List
 
-
 def parse_args():
     parser = argparse.ArgumentParser(prog="build_extensions")
 
     parser.add_argument(
+        "--build_dir",
+        default="build",
+        help="Directory for Meson to use while building extensions.",
+    )
+    parser.add_argument(
+        "--build_type",
+        default="release",
+        choices=["debug", "debugoptimized", "release"],
+        help="The type of build to provide. Defaults to release mode.",
+    )
+    parser.add_argument(
+        "--problem",
+        default="vrptw",
+        choices=["cvrp", "vrptw"],
+        help="Which type of solver to compile. Defaults to 'vrptw'.",
+    )
+    parser.add_argument(
+        "--precision",
+        default="integer",
+        choices=["integer", "double"],
+        help="Double is more precise, integer faster. Defaults to 'integer'.",
+    )
+    parser.add_argument(
         "--clean",
         action="store_true",
         help="Clean build and installation directories before building.",
+    )
+    parser.add_argument(
+        "--regenerate_type_stubs",
+        action="store_true",
+        help="""
+        Whether to regenerate the MyPy type stubs as well. Default False, since
+        this can overwrite manual adjustments to the type stubs.
+        """,
     )
     parser.add_argument(
         "--additional",
@@ -53,23 +83,21 @@ def regenerate_stubs(install_dir: pathlib.Path):
 def build(
     build_dir: pathlib.Path,
     build_type: str,
-    problem: str,
-    precision: str,
     additional: List[str],
 ):
     cwd = pathlib.Path.cwd()
+
     args = [
         # fmt: off
         "--buildtype", build_type,
         f"-Dpython.platlibdir={cwd.absolute()}",
-        f"-Dproblem={problem}",
         f"-Dstrip={'true' if build_type == 'release' else 'false'}",
-        f"-Dprecision={precision}",
         *additional,
         # fmt: on
     ]
 
     cmd = "configure" if build_dir.exists() else "setup"
+
     check_call(["meson", cmd, build_dir, *args])
     check_call(["meson", "compile", "-C", build_dir])
     check_call(["meson", "install", "-C", build_dir])
@@ -89,8 +117,6 @@ def main():
     build(
         build_dir,
         args.build_type,
-        args.problem,
-        args.precision,
         args.additional,
     )
 
