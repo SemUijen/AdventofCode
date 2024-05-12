@@ -1,0 +1,1 @@
+from ._day1 import solve as solve
