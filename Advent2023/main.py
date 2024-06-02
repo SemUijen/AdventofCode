@@ -5,11 +5,15 @@ from advent import read
 
 def main():
 
-    return read(day=1, is_test=True)
+    data = read(day=1, is_test=True)
+    answer = solve_day1(input=data)
+    print(answer)
+
+    data = read(day=1)
+    answer = solve_day1(input=data)
+    print(answer)
 
 
 if __name__ == "__main__":
     
-    problem_data = main()
-    
-    print(problem_data.data())
+    main()

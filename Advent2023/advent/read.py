@@ -4,7 +4,7 @@ from typing import Optional
 from advent._advent import ProblemData
 
 def read(day: int, 
-         is_test: bool,
+         is_test: Optional[bool]=False,
          path: Optional[str]=None) -> ProblemData:
     
     if not path:
@@ -19,7 +19,6 @@ def read(day: int,
         # reads each line without /n
         data = f.read().splitlines()
 
-    print(data)
     
     return ProblemData(data)
     

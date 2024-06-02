@@ -1,5 +1,6 @@
 #include "day1.h"
 #include <iostream>
+#include <string>
 
 int advent::day1::solve_day1(ProblemData &input)
 {
@@ -7,7 +8,23 @@ int advent::day1::solve_day1(ProblemData &input)
 
     for (String &row : input.data())
     {
-        std::cout << row;
+        // initialze first 10 as digits (are smaller then 10)
+        int first = 10;
+        int second;
+
+        for (char chr : row)
+        {
+            if (isdigit(chr))
+            {
+                if (first == 10)
+                {
+                    first = chr - '0';
+                }
+                second = chr - '0';
+            };
+        }
+        output += (10 * first + second);
     }
+
     return output;
 }

@@ -11,11 +11,13 @@ include = [
 
 [tool.poetry.dependencies]
 python = "^3.10"
+pytest = "^8.2.1"
 
 [tool.poetry.group.dev.dependencies]
 # These are used in the build script: for compiling the library (meson, ninja)
 meson = "^1.0.0"
 ninja = "^1.11.1"
+
 
 [build-system]
 requires = ["poetry-core", "meson"]
