@@ -14,8 +14,10 @@ def read(day: int,
 
     file = f"day{day}{prefix}.txt"
     file_path= os.path.join(path, file)
-    with open(file_path, "r") as f:
-        data = f.read()
 
-    return data
+    with open(file_path, "r") as f:
+        # reads each line without /n
+        data = f.read().splitlines()
+
+    return ProblemData(data)
     
