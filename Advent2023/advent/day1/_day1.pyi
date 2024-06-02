@@ -1,4 +1,4 @@
+from advent._advent import ProblemData
 
 
-
-def solve(input: int) -> int: ...
+def solve_day1(input: ProblemData) -> int: ...

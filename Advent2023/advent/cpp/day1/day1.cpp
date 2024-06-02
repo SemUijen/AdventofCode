@@ -1,6 +1,13 @@
 #include "day1.h"
+#include <iostream>
 
-int advent::day1::solve(int const &input)
+int advent::day1::solve_day1(ProblemData &input)
 {
-    return input + 20;
+    int output = 0;
+
+    for (String &row : input.data())
+    {
+        std::cout << row;
+    }
+    return output;
 }

@@ -1,1 +1,1 @@
-from ._day1 import solve as solve
+from ._day1 import solve_day1
