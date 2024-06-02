@@ -36,10 +36,12 @@ libcommon = static_library(
     'common',
     [
         SRC_DIR / 'day1' / 'day1.cpp',
+        SRC_DIR / 'ProblemData.cpp',
 
     ],
     include_directories: INCLUDES,
 )
+
 
 # Next we get the extension dependencies.
 py = import('python').find_installation()
@@ -49,7 +51,8 @@ dependencies = [py.dependency(), dependency('pybind11')]
 # eventual module name, and 'subdirectory' gives the source and installation 
 # directories (relative to SRC_DIR and INST_DIR).
 extensions = [
-   ['day1', 'day1']
+   ['day1', 'day1'],
+   ['advent', '']
 ]
 
 foreach extension : extensions

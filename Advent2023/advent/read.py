@@ -1,14 +1,14 @@
 import os
 
 from typing import Optional
-from .ProblemData import ProblemData
+from advent._advent import ProblemData
 
 def read(day: int, 
          is_test: bool,
          path: Optional[str]=None) -> ProblemData:
     
     if not path:
-        path = './Advent2023/data/'
+        path = './data/'
 
     prefix= "_test" if is_test else ""
 
@@ -19,5 +19,7 @@ def read(day: int,
         # reads each line without /n
         data = f.read().splitlines()
 
+    print(data)
+    
     return ProblemData(data)
     

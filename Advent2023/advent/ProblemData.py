@@ -1,3 +1,0 @@
-
-class ProblemData:
-    pass

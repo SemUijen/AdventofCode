@@ -12,4 +12,5 @@ if __name__ == "__main__":
     
     problem_data = main()
     
-    print(problem_data.data)
+    print(problem_data.test())
+    print(problem_data.data())
