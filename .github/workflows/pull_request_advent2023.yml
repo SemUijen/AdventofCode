@@ -32,7 +32,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install --upgrade poetry
           poetry install
-          poetry run python build_extensions.py 
+          poetry run python build_extensions.py --build_type debug --clean
 
       - name: Test with pytest
         run: |
