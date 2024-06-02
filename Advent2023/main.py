@@ -10,4 +10,6 @@ def main():
 
 if __name__ == "__main__":
     
-    print(main())
+    problem_data = main()
+    
+    print(problem_data.data)
