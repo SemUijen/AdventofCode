@@ -13,6 +13,8 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    
     defaults:
       run:
         working-directory: Advent2023
@@ -29,8 +31,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo apt-get install python3-pybind11
           python -m pip install --upgrade pip
+          pip install pybind11[global]
           pip install --upgrade poetry
           poetry install
           poetry run python build_extensions.py --build_type debug --clean
