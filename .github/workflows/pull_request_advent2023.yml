@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-director: Advent2023
+        working-directory: Advent2023
       
     
 
