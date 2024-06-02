@@ -4,7 +4,8 @@ from advent.read import read
 
 def test_day1_part1():
 
-    test_data, data = read(day=1, is_test=True), read(day=1)
+
+    test_data, data = read(day=1, is_test=True, path='Advent2023/data/'), read(day=1)
 
     ## Part1
     assert solve_day1(test_data) == 142
