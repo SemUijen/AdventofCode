@@ -32,6 +32,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install --upgrade poetry
           poetry install
+          poetry run python build_extensions.py 
 
       - name: Test with pytest
         run: |
