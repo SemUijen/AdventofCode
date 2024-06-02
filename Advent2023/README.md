@@ -6,7 +6,7 @@ This repo contains my solutions to the advent of code 2023. I used this years ad
 
 Make sure you have a reasonably modern C++ compiler. Any recent version that supports (most of) the C++20 standard should do. Once you have a compiler installed, you can proceed by cloning this repository
 > [!NOTE]
-> When running windows, install [WSL][1] as windows has some issues with compiling and clone the repo into the WSL enviroment
+> When running windows, install [WSL][1] as windows has some issues with compiling and clone the repo into the WSL environment
 
 Now, clone and change into the Advent 2023 directory, and set-up the virtual environment using poetry:
 
