@@ -8,5 +8,3 @@ ProblemData::ProblemData(Vector data)
 }
 
 Vector ProblemData::data() const { return data_; }
-
-int ProblemData::test() const { return test_; }

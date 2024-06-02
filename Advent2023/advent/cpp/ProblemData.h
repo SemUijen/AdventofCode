@@ -13,7 +13,6 @@ namespace advent
     {
     private:
         Vector data_;
-        int test_ = 1;
 
     public:
         /**
@@ -25,8 +24,6 @@ namespace advent
          * the data of the Problem
          */
         [[nodiscard]] Vector data() const;
-
-        [[nodiscard]] int test() const;
     };
 
 } // end of namespace
