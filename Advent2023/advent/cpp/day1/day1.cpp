@@ -28,3 +28,10 @@ int advent::day1::solve_day1(ProblemData &input)
 
     return output;
 }
+
+int advent::day1::solve_day1_part2(ProblemData &input)
+{
+    int output = 0;
+
+    return output;
+}
