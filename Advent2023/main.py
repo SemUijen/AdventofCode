@@ -1,16 +1,12 @@
 import os
-from advent.day1 import solve_day1
+from advent.day1 import solve_day1_part2
 from advent import read
 
 
 def main():
 
-    data = read(day=1, is_test=True)
-    answer = solve_day1(input=data)
-    print(answer)
-
-    data = read(day=1)
-    answer = solve_day1(input=data)
+    data = read(day=1, part=1)
+    answer = solve_day1_part2(input=data)
     print(answer)
 
 
