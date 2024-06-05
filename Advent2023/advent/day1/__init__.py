@@ -1,1 +1,1 @@
-from ._day1 import solve_day1
+from ._day1 import solve_day1, solve_day1_part2
