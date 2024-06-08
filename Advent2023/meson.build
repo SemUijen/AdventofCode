@@ -36,6 +36,7 @@ libcommon = static_library(
     'common',
     [
         SRC_DIR / 'day1' / 'day1.cpp',
+        SRC_DIR / 'day2' / 'day2.cpp',
         SRC_DIR / 'ProblemData.cpp',
 
     ],
@@ -52,6 +53,7 @@ dependencies = [py.dependency(), dependency('pybind11')]
 # directories (relative to SRC_DIR and INST_DIR).
 extensions = [
    ['day1', 'day1'],
+   ['day2', 'day2'],
    ['advent', '']
 ]
 

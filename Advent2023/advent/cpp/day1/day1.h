@@ -1,5 +1,5 @@
-#ifndef PYVRP_SELECTIVE_ROUTE_EXCHANGE_H
-#define PYVRP_SELECTIVE_ROUTE_EXCHANGE_H
+#ifndef ADVENT_DAY1_H
+#define ADVENT_DAY1_H
 
 #include "ProblemData.h"
 
@@ -12,4 +12,4 @@ namespace advent::day1
 
 } // namespace pyvrp::crossover
 
-#endif // PYVRP_SELECTIVE_ROUTE_EXCHANGE_H
+#endif // ADVENT_DAY1_H
