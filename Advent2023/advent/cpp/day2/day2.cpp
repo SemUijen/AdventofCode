@@ -41,44 +41,34 @@ int advent::day2::solve_day2_part2(ProblemData &input)
 {
     int output = 0;
 
-    for (std::string row : input.data())
+    for (String &row : input.data())
     {
-        // initialze first 10 as digits (are smaller then 10)
-        int first = 10;
-        int second = 10;
+        std::istringstream stream(row);
+        std::string c;
+        int id, n, r{}, g{}, b{};
 
-        int i = 0;
-        for (char chr : row)
+        // >> operator jumps to the next segment of string
+        stream >> c;
+        stream >> id;
+        stream.ignore(1);
+        while (stream >> n)
         {
-            if (isdigit(chr))
-            {
-                if (isdigit(chr))
-                {
-                    if (first == 10)
-                    {
-                        first = chr - '0';
-                    }
-                    second = chr - '0';
-                }
+            stream >> c;
+            if ('r' == c[0])
+            { // red
+                r = std::max(r, n);
             }
-
-            int i2 = 1;
-            std::string digitStrings[] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
-            for (String digits : digitStrings)
-            {
-                if (row.substr(i, digits.size()) == digits)
-                {
-                    if (first == 10)
-                    {
-                        first = i2;
-                    }
-                    second = i2;
-                }
-                i2 += 1;
+            else if ('g' == c[0])
+            { // green
+                g = std::max(g, n);
             }
-            i += 1;
+            else if ('b' == c[0])
+            { // blue
+                b = std::max(b, n);
+            }
         }
-        output += 10 * first + second;
+
+        output += r * b * g;
     }
 
     return output;

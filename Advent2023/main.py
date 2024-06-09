@@ -6,11 +6,11 @@ from advent import read
 def main():
 
     data = read(day=2, part=1, is_test=True)
-    answer = solve_day2(input=data)
+    answer = solve_day2_part2(input=data)
     print(answer)
 
     data = read(day=2, part=1)
-    answer = solve_day2(input=data)
+    answer = solve_day2_part2(input=data)
     print(answer)
 
 
