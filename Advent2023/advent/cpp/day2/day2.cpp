@@ -1,8 +1,7 @@
 #include "day2.h"
 #include <iostream>
 #include <string>
-#include <string_view>
-#include <cstring>
+#include <sstream>
 
 int advent::day2::solve_day2(ProblemData &input)
 {
@@ -10,22 +9,29 @@ int advent::day2::solve_day2(ProblemData &input)
 
     for (String &row : input.data())
     {
-        // initialze first 10 as digits (are smaller then 10)
-        int first = 10;
-        int second;
+        std::istringstream stream(row);
+        std::string c;
+        int id, n;
 
-        for (char chr : row)
+        // >> operator jumps to the next segment of string
+        stream >> c;
+        stream >> id;
+        stream.ignore(1);
+        bool valid_game = true;
+        while (stream >> n)
         {
-            if (isdigit(chr))
+            stream >> c;
+            if (('r' == c[0] && n > 12) || // red
+                ('g' == c[0] && n > 13) || // green
+                ('b' == c[0] && n > 14))   // blue
             {
-                if (first == 10)
-                {
-                    first = chr - '0';
-                }
-                second = chr - '0';
-            };
+                valid_game = false;
+            }
         }
-        output += (10 * first + second);
+        if (valid_game)
+        {
+            output += id;
+        }
     }
 
     return output;
